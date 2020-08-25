@@ -1,0 +1,64 @@
+<mat-card>
+
+  <mat-card-title fxLayout="row">
+    <h2>Add Product</h2>
+  </mat-card-title>
+
+  <mat-card-subtitle *ngIf="isUpdate">
+    Add a product and share it with your customers
+  </mat-card-subtitle>
+
+  <mat-card-content>
+    <form [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxLayoutAlign="start center"
+      fxLayoutGap="1.5rem">
+
+      <mat-form-field appearance="legacy" fxFlex="100%">
+        <mat-label>Title *</mat-label>
+        <input matInput formControlName="title" maxlength={{appConstants.maxLength.TEXT}}>
+        <mat-error *ngIf="form.get('title').hasError('onlyWhiteSpace')">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy" fxFlex="100%">
+        <mat-label>Category *</mat-label>
+        <input matInput formControlName="category" maxlength={{appConstants.maxLength.TEXT}}>
+        <mat-error *ngIf="form.get('category').hasError('onlyWhiteSpace')">
+          Category is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy" fxFlex="100">
+        <mat-label>Vendor *</mat-label>
+        <input matInput formControlName="vendor" maxlength={{appConstants.maxLength.TEXT}}>
+        <mat-error *ngIf="form.get('vendor').hasError('onlyWhiteSpace')">
+          Vendor is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy" fxFlex="100">
+        <mat-label>Price *</mat-label>
+        <input matInput formControlName="price">
+        <mat-error *ngIf="form.get('price').hasError('required')">
+          Price is required
+        </mat-error>
+      </mat-form-field>
+
+      <div fxFlex fxLayoutGap="0.5rem" fxLayout.xs="column-reverse" fxLayoutAlign="end stretch"
+        fxLayoutAlign.xs="start stretch" class="buttons mt-1">
+
+        <button routerLink="product/list" mat-flat-button color="warn" type="button" [disabled]="submittingForm">
+          <span>Cancel</span>
+        </button>
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="submittingForm">
+          <span *ngIf="!submittingForm">Add Product</span>
+          <span *ngIf="submittingForm">
+            Adding...
+          </span>
+        </button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

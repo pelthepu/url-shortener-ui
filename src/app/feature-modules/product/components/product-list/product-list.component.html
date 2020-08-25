@@ -1,0 +1,52 @@
+<mat-card>
+  <mat-card-title fxLayoutAlign="space-between">
+    <h2>Product List</h2>
+    <button fxFlexAlign="end" mat-flat-button color="primary" type="button" routerLink="/product/create">
+      Add Product
+    </button>
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <table mat-table [dataSource]="(products$ | async)" class="mat-elevation-z8">
+
+      <!-- Product Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let product"> {{product.title}} </td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let product"> {{product.category}} </td>
+      </ng-container>
+
+      <!-- Vendor Column -->
+      <ng-container matColumnDef="vendor">
+        <th mat-header-cell *matHeaderCellDef> Vendor </th>
+        <td mat-cell *matCellDef="let product"> {{product.vendor}} </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price (INR) </th>
+        <td mat-cell *matCellDef="let product"> {{product.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let product">
+          <mat-icon (click)="shareProduct(product)" matTooltip="Edit Clinic">
+            share
+          </mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Implement pagination -->
+
+    </table>
+  </mat-card-content>

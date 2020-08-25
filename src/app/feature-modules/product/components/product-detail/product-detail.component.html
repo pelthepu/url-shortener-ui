@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row" *ngIf="productInfo$ | async as productInfo">
+    <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
+      <table class="table table-striped">
+        <tr>
+          <td>Title</td>
+          <td>{{ productInfo.title }}</td>
+        </tr>
+        <tr>
+          <td>Category</td>
+          <td>{{ productInfo.category }}</td>
+        </tr>
+        <tr>
+          <td>Vendor</td>
+          <td>{{ productInfo.vendor }}</td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td>{{ productInfo.price }}</td>
+        </tr>
+      </table>
+      
+      <button mat-flat-button color="primary" routerLink='/product/list'>
+        <span>Back to List</span>
+      </button>
+    </div>
+  </div>
+</div>
