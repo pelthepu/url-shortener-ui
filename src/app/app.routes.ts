@@ -5,10 +5,11 @@ export const appRoutes: Routes = [
   {
     path: 'product',
     component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: () => import('./feature-modules/product/product.module').then((m) => m.ProductModule),
-    }
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./feature-modules/product/product.module').then((m) => m.ProductModule),
+      }
     ]
   },
   {

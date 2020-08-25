@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SharedMaterialModule } from 'src/app/shared/shared-material.module';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule, StyleUtils } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [ProductListComponent, ProductDetailComponent, ProductFormComponent],
@@ -21,7 +21,6 @@ import { FlexLayoutModule, StyleUtils } from '@angular/flex-layout';
     RouterModule.forChild(productRoutes)
   ],
   providers: [
-    StyleUtils
   ]
 })
 export class ProductModule { }
