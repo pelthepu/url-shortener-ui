@@ -5,6 +5,7 @@ import { appConstants } from 'src/app/config/app.constants';
 import { notOnlyWhiteSpaceValidator } from 'src/app/shared/validators/no-whitesapce.validator';
 import { Logger } from 'src/app/core/services/logger.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'src/app/shared/services/toastr.service';
 
 @Component({
   selector: 'app-product-form',
@@ -22,7 +23,8 @@ export class ProductFormComponent implements OnInit {
   constructor(
     private _productService: ProductService,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _toastrService: ToastrService
   ) {
     this.log = new Logger('ProductFormComponent');
   }
@@ -46,10 +48,11 @@ export class ProductFormComponent implements OnInit {
     }
 
     this._productService.addProduct(this.form.value).subscribe((data) => {
-      //TODO: Display toastr
+      this._toastrService.show('Successfully added');
       this._router.navigateByUrl('product/list');
     }, (err) => {
       this.log.error('Error in adding product', err);
+      this._toastrService.show('Error in adding product');
     });
   }
 

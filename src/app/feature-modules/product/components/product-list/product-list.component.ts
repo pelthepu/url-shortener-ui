@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/shared/components/alert-dialog/alert-dialog.component';
 import { Logger } from 'src/app/core/services/logger.service';
 import { Shortener } from '../../shared/models/shortener';
+import { ClipboardService } from 'src/app/shared/services/clipboard.service';
+import { ToastrService } from 'src/app/shared/services/toastr.service';
 
 @Component({
   selector: 'app-product-list',
@@ -23,6 +25,8 @@ export class ProductListComponent implements OnInit {
     private _productService: ProductService,
     private _shortenerService: ShortenerService,
     private _dialog: MatDialog,
+    private _clipboardService: ClipboardService,
+    private _toastrService: ToastrService
   ) {
     this.log = new Logger('ProductListComponent');
   }
@@ -41,11 +45,19 @@ export class ProductListComponent implements OnInit {
 
   private _displayInfo(data: Shortener) {
     const tinyUrl = `${location.origin}/s/${data.tinyUrl}`;
-    this._dialog.open(AlertDialogComponent, {
+    let dialogRef = this._dialog.open(AlertDialogComponent, {
       data: {
         message: `Product has been shared with tiny URL: <a href='${tinyUrl}'>${tinyUrl}</a>`,
+        buttonText: {
+          ok: 'Copy to Clipboard'
+        }
       }
     });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this._clipboardService.copyToClipboard(tinyUrl);
+      this._toastrService.show('Copied tiny URL to clipboard');
+    })
   }
 
 }
