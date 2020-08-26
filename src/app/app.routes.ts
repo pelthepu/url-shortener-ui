@@ -13,6 +13,16 @@ export const appRoutes: Routes = [
     ]
   },
   {
+    path: 's',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./feature-modules/shortener/shortener.module').then((m) => m.ShortenerModule),
+      }
+    ]
+  },
+  {
     path: '',
     redirectTo: 'product',
     pathMatch: 'full'

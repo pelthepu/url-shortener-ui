@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AlertDialogComponent  {
   
   message: string = "Are you sure?"
-  confirmButtonText = "Yes"
+  confirmButtonText = "Close"
 
   @Output() onConfirm=new EventEmitter(); 
   constructor(

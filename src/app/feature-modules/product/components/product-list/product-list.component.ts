@@ -31,7 +31,6 @@ export class ProductListComponent implements OnInit {
   }
 
   shareProduct(product: Product): void {
-
     const url = `${location.origin}/product/detail/${product.id}`
     this._shortenerService.share(url).subscribe((data: Shortener) => {
       this._displayInfo(data);
@@ -41,12 +40,10 @@ export class ProductListComponent implements OnInit {
   }
 
   private _displayInfo(data: Shortener) {
+    const tinyUrl = `${location.origin}/s/${data.tinyUrl}`;
     this._dialog.open(AlertDialogComponent, {
       data: {
-        message: `Product has been shared with tiny URL: ${data.tinyUrl}`,
-        buttonText: {
-          ok: 'Yes'
-        }
+        message: `Product has been shared with tiny URL: <a href='${tinyUrl}'>${tinyUrl}</a>`,
       }
     });
   }

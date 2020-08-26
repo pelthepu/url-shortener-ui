@@ -14,6 +14,10 @@ export class ShortenerService {
   constructor(private _http: HttpClient) { }
 
   share(url: string): Observable<Shortener> {
-    return this._http.post<any>(`${this._baseUrl}/create`, { url });
+    return this._http.post<Shortener>(`${this._baseUrl}/create`, { actualUrl: url });
+  }
+
+  getUrlByTinyUrl(tinyUrl: string): Observable<Shortener> {
+    return this._http.get<Shortener>(`${this._baseUrl}/${tinyUrl}`);
   }
 }

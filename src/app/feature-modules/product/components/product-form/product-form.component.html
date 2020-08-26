@@ -1,7 +1,7 @@
 <mat-card>
 
   <mat-card-title fxLayout="row">
-    <h2>Add Product</h2>
+    <span>Add Product</span>
   </mat-card-title>
 
   <mat-card-subtitle>
@@ -14,7 +14,7 @@
 
       <mat-form-field appearance="legacy" fxFlex="100%">
         <mat-label>Title *</mat-label>
-        <input matInput formControlName="title" maxlength={{appConstants.maxLength.TEXT}}>
+        <input matInput formControlName="title" maxlength={{appConstants.maxLength.ESSAY}}>
         <mat-error *ngIf="form.get('title').hasError('onlyWhiteSpace')">
           Title is required
         </mat-error>
@@ -22,7 +22,7 @@
 
       <mat-form-field appearance="legacy" fxFlex="100%">
         <mat-label>Category *</mat-label>
-        <input matInput formControlName="category" maxlength={{appConstants.maxLength.TEXT}}>
+        <input matInput formControlName="category" maxlength={{appConstants.maxLength.ESSAY}}>
         <mat-error *ngIf="form.get('category').hasError('onlyWhiteSpace')">
           Category is required
         </mat-error>
@@ -30,7 +30,7 @@
 
       <mat-form-field appearance="legacy" fxFlex="100">
         <mat-label>Vendor *</mat-label>
-        <input matInput formControlName="vendor" maxlength={{appConstants.maxLength.TEXT}}>
+        <input matInput formControlName="vendor" maxlength={{appConstants.maxLength.ESSAY}}>
         <mat-error *ngIf="form.get('vendor').hasError('onlyWhiteSpace')">
           Vendor is required
         </mat-error>

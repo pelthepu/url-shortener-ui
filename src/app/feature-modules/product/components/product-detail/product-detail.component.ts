@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 })
 export class ProductDetailComponent implements OnInit {
 
-  productId: number;
   productInfo$: Observable<Product>;
 
   constructor(
@@ -20,8 +19,8 @@ export class ProductDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.productId = +this._activatedRoute.snapshot.paramMap.get('id');;
-    this.productInfo$ = this._productService.getProductById(this.productId);
+    const productId = +this._activatedRoute.snapshot.paramMap.get('id');
+    this.productInfo$ = this._productService.getProductById(productId);
   }
 
 }

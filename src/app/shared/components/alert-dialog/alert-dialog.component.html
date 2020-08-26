@@ -1,6 +1,8 @@
 <div mat-dialog-content>
-  <p>{{message}}</p>
+  <p [innerHTML]="message"></p>
 </div>
 <div mat-dialog-actions align="center">
-  <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+  <button mat-flat-button color="primary" (click)="onConfirmClick()">
+    <span>{{confirmButtonText}}</span>
+  </button>
 </div>

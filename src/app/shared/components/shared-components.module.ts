@@ -6,7 +6,6 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [AdminLayoutComponent, AlertDialogComponent],
-  entryComponents: [AlertDialogComponent],
   imports: [
     CommonModule,
     RouterModule,
